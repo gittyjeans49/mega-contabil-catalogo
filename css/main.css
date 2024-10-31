@@ -7,11 +7,11 @@ header{
     padding: 25px;
 }
 
-.selected {
+#selected {
     font-weight: bold;
 }
 
-span{
+.menu{
     background-color: #8a8a8a;
     color: white;
     padding: 0px 20px;
@@ -54,6 +54,16 @@ table, tr, th, td {
     padding: 17px;
 }
 
+.divLeft {
+    width: 20%;
+    float: left;
+}
+
+.divRight {
+    width: 20%;
+    margin-left: 20%;
+}
+
 button {
     background-color: #e7e7e7;
     border: solid 1px #000;
@@ -73,6 +83,15 @@ button {
     overflow: auto;
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
+}
+
+.popupContent {
+    background-color: #f0ffff;
+    margin: 7.5% auto;
+    padding: 20px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    width: 50%;
 }
 
 .tabelaEmpresa {
