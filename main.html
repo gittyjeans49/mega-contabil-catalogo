@@ -24,8 +24,78 @@
             <h3>Empresas - Contabilidade Megasult</h3>
             <div class="searchFunctions">
                 <input class="empresaInput" type="text" placeholder="Digite o nome da empresa...">
-                <button class="btnMain" type="button">Pesquisar empresa...</button>
-                <button class="btnMain" type="button">Mais opções...</button>
+                <button type="button">Pesquisar empresa...</button>
+                <button id="popupBtn" type="button">Mais opções...</button>
+            </div>
+            <div id="popup">
+                <div class="popupContent">
+                    <h3>Opções avançadas</h3>
+                    <form action="/action_page.php">
+                        <span>Pesquisar...</span>
+                        <input class="empresaInput" type="text" placeholder="Digite o nome da empresa...">
+                        <br>
+                        <span>Pesquisar:</span>
+                        <select>
+                            <option value="0">Nome da Empresa</option>
+                            <option value="1">Código</option>
+                        </select>
+                        <br>
+                        <span>Pesquisar em:</span>
+                        <select>
+                            <option value="0">Equipe 1</option>
+                            <option value="1">Equipe 2</option>
+                            <option value="2">Equipe 3</option>
+                            <option value="3">Equipe 4</option>
+                            <option value="4">Equipe 5</option>
+                            <option value="5">Equipe 6</option>
+                            <option value="6">Equipe 7</option>
+                            <option value="7">Equipe 8</option>
+                            <option value="8">Equipe 9</option>
+                        </select>
+                        <br>
+                        <div>
+                            <span>Tipo de lucro:</span>
+                            <br>
+                            <input type="radio" id="ambos" name="lucro" value="ambos">
+                            <label for="ambos">Ambos</label>
+                            <br>
+                            <input type="radio" id="real" name="lucro" value="real">
+                            <label for="real">Real</label>
+                            <br>
+                            <input type="radio" id="presumido" name="lucro" value="presumido">
+                            <label for="presumido">Presumido</label>
+                            <br>
+                        </div>
+                        <div>
+                            <span>Fechamento contábil:</span>
+                            <br>
+                            <span>Ref.:</span>
+                            <select>
+                                <option value="0">Mês 01</option>
+                                <option value="1">Mês 02</option>
+                                <option value="2">Mês 03</option>
+                                <option value="3">Mês 04</option>
+                                <option value="4">Mês 05</option>
+                                <option value="5">Mês 06</option>
+                                <option value="6">Mês 07</option>
+                                <option value="7">Mês 08</option>
+                                <option value="8">Mês 09</option>
+                                <option value="9">Mês 10</option>
+                                <option value="10">Mês 11</option>
+                                <option value="11">Mês 12</option>
+                            </select>
+                            <br>
+                            <input type="checkbox" id="contem" value="contem">
+                            <label for="contem">Contém</label>
+                            <br>
+                            <input type="checkbox" id="faltando" value="faltando">
+                            <label for="faltando">Faltando</label>
+                            <br>
+                        </div>
+                        <button type="button">Limpar</button>
+                        <button type="button">Pesquisar</button>
+                    </form>
+                </div>
             </div>
             <tr>
                 <th>Nome da Empresa</th>
@@ -39,17 +109,19 @@
                 <td>0001</td>
                 <td>Lucro Real</td>
                 <td>Equipe 1</td>
-                <td>Mês 08/202X OK</td>
+                <td>Mês 08/202X</td>
             </tr>
             <tr>
                 <td>Empresa 2</td>
                 <td>0002</td>
                 <td>Lucro Presumido</td>
                 <td>Equipe 2</td>
-                <td>Mês 09/202X OK</td>
+                <td>Mês 09/202X</td>
             </tr>
         </table>
     </div>
+    
+    <script src="script/scriptmain.js"></script>
 </body>
 
 </html>
