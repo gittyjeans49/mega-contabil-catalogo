@@ -54,14 +54,12 @@ table, tr, th, td {
     padding: 17px;
 }
 
-.divLeft {
-    width: 20%;
-    float: left;
-}
-
-.divRight {
-    width: 20%;
-    margin-left: 20%;
+.selectBox {
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background-color: #fff;
+    padding: 17px;
 }
 
 button {
@@ -86,6 +84,7 @@ button {
 }
 
 .popupContent {
+    text-align: center;
     background-color: #f0ffff;
     margin: 7.5% auto;
     padding: 20px;
@@ -94,10 +93,22 @@ button {
     width: 50%;
 }
 
+.popupContent > * {
+    margin: 1%;
+}
+
+.divLeft {
+    display: inline-block;
+}
+
+.divRight {
+    margin-left: 10%;
+    display: inline-block;
+}
+
 .tabelaEmpresa {
     width: 60%;
     border-collapse: collapse;
     border-spacing: 0;
     margin-top: 10px;
-    
 }
