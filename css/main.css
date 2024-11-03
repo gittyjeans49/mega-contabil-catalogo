@@ -70,6 +70,15 @@ button {
     cursor: pointer;
 }
 
+button:hover:enabled {
+    background-color: #d3d3d3;
+}
+
+button:disabled {
+    background-color: #d3d3d3;
+    cursor: default;
+}
+
 #popup {
     display: none;
     position: fixed;
