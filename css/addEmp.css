@@ -1,0 +1,36 @@
+.formBox {
+    background-color: #d3d3d3;
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #000000;
+}
+
+.divForm {
+    text-align: center;
+}
+
+label, span {
+    background-color: #d3d3d3;
+}
+
+.gray {
+    background-color: #d3d3d3;
+}
+
+.space {
+    margin-left: 20%;
+}
+
+.smallMargin {
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.selectBox {
+    margin: 1%;
+}
+
+#codigo {
+    width: 10%;
+}
