@@ -5,9 +5,7 @@ import OpcoesAvancadas from "../components/OpcoesAvancadas";
 import Header from "../components/Header";
 import Tabela from "../components/Tabela";
 import styles from "../styles/main.module.css";
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
-
-
+import { Modal, Button, useDisclosure } from "@nextui-org/react";
 
 export default function Home() {
 
