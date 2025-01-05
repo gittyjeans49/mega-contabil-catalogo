@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import {Raleway} from "next/font/google";
+import { Raleway } from "next/font/google";
 
 export const metadata: Metadata = {
   title: "Fechamento Contábil Megasult",
