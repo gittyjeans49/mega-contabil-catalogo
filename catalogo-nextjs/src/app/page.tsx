@@ -7,6 +7,8 @@ import Tabela from "../components/Tabela";
 import styles from "../styles/main.module.css";
 import { Modal, Button, useDisclosure } from "@nextui-org/react";
 
+// adicionar import do mockdata https://675772e7c0a427baf94cc80f.mockapi.io/tabelaempresa
+
 export default function Home() {
 
   const editarEmpresa = useDisclosure();
@@ -29,9 +31,9 @@ export default function Home() {
         />
         <button type="button">Pesquisar empresa...</button>
 
-        <Button onPress={editarEmpresa.onOpen}>Editar empresa...</Button>
+        <Button disableRipple={true} onPress={editarEmpresa.onOpen}>Editar empresa...</Button>
 
-        <Button onPress={opcoesAvancadas.onOpen}>Mais opções...</Button>
+        <Button disableRipple={true} onPress={opcoesAvancadas.onOpen}>Mais opções...</Button>
 
         <Modal hideCloseButton={true} isOpen={editarEmpresa.isOpen} onOpenChange={editarEmpresa.onOpenChange}>
           <EditarEmpresa />
