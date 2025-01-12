@@ -1,5 +1,15 @@
 "use client";
 
+export type User = {
+    empresa: string
+    codigo: number
+    tipo_lucro: string
+    equipe: number
+    responsavel: string
+    fechamento: string
+    key: string
+}
+
 export const columns = [
     {
         key: "empresa",

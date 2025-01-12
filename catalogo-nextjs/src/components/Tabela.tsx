@@ -1,5 +1,5 @@
 "use client"
-import React from "react";
+import React, { useMemo, useState } from "react";
 import {
     Table,
     TableHeader,
@@ -9,9 +9,11 @@ import {
     TableCell,
     Pagination,
     getKeyValue,
+    SortDescriptor,
+    Input,
 } from "@nextui-org/react";
 import styles from "../styles/main.module.css"
-import { columns } from "./columns";
+import { columns, User } from "./columns";
 
 const rows = [
     {
@@ -466,12 +468,26 @@ const rows = [
     }
 ];
 
+// Tabela({ users }: { users: User[] })
 export default function Tabela() {
-    const [page, setPage] = React.useState(1);
+    const [filterValue, setFilterValue] = useState('');
+    const hasSearchFilter = Boolean(filterValue);
+
+    const filteredItems = useMemo(() => {
+        let filteredUsers = [...rows]
+
+        if (hasSearchFilter) {
+            filteredUsers = filteredUsers.filter(user =>
+                user.empresa.toLowerCase()
+            )
+        }
+
+        return filteredUsers
+    }, [rows, filterValue, hasSearchFilter])
+
     const rowsPerPage = 15;
-
+    const [page, setPage] = React.useState(1);
     const pages = Math.ceil(rows.length / rowsPerPage);
-
     const items = React.useMemo(() => {
         const start = (page - 1) * rowsPerPage;
         const end = start + rowsPerPage;
@@ -479,30 +495,88 @@ export default function Tabela() {
         return rows.slice(start, end);
     }, [page, rows]);
 
-    return (
-        <Table
-            bottomContent={
-                // tabela está mudando de tamanho ao trocar de página - Resolver isso
-                <div className={styles.divpage}>
-                    <Pagination className={styles.tablepage}
-                        // showControls está mostrando duas setas para a mesma direção - Desativado no momento
-                        page={page}
-                        total={pages}
-                        onChange={(page) => setPage(page)}
+    const [sortDescriptor, setSortDescriptor] = React.useState<SortDescriptor>({
+        column: "empresa",
+        direction: "ascending",
+    });
+
+    const sortedItems = React.useMemo(() => {
+        return [...items].sort((a: User, b: User) => {
+            const first = a[sortDescriptor.column as keyof User] as number;
+            const second = b[sortDescriptor.column as keyof User] as number;
+            const cmp = first < second ? -1 : first > second ? 1 : 0;
+
+            return sortDescriptor.direction === "descending" ? -cmp : cmp;
+        });
+    }, [sortDescriptor, items]);
+
+    const onSearchChange = React.useCallback((value?: string) => {
+        if (value) {
+            setFilterValue(value);
+            setPage(1);
+        } else {
+            setFilterValue("");
+        }
+    }, []);
+
+    const onClear = React.useCallback(() => {
+        setFilterValue("");
+        setPage(1);
+    }, []);
+
+    const topContent = React.useMemo(() => {
+        return (
+            <div>
+                <div>
+                    <Input className={styles.EmpresaInput}
+                        isClearable
+                        placeholder="Digite o nome da empresa..."
+                        // startContent={<SearchIcon />}
+                        value={filterValue}
+                        onClear={() => onClear()}
+                        onValueChange={onSearchChange}
                     />
                 </div>
-            }>
-                {/* adicionar filtros e classificações */}
+            </div>
+        );
+    }, [
+        filterValue,
+        onSearchChange,
+        hasSearchFilter,
+        onClear
+    ]);
+
+    const bottomContent = React.useMemo(() => {
+        return (
+            <div className={styles.divpage}>
+                <Pagination className={styles.tablepage}
+                    page={page}
+                    total={pages}
+                    onChange={(page) => setPage(page)}
+                />
+            </div>
+        )
+    }, [items.length, page, pages]);
+
+    return (
+        <Table
+            // topContent={topContent}
+            bottomContent={bottomContent}
+            sortDescriptor={sortDescriptor}
+            onSortChange={setSortDescriptor}>
+            {/* adicionar filtros e classificações - em progresso */}
             <TableHeader columns={columns}>
-                {(column) => <TableColumn key={column.key} >{column.label}</TableColumn>}
+                {(column) => <TableColumn key={column.key}
+                    {...(column.key === 'empresa' ? { allowsSorting: true } : {})}
+                >{column.label}</TableColumn>}
             </TableHeader>
             {/* condicional ternário para alinhar o texto */}
-            <TableBody items={items} emptyContent="Nenhuma empresa encontrada." style={TableBody === null ? { textAlign: "center" } : { textAlign: "left" }} >
-                {(item) => (
-                    <TableRow key={item.key} className={styles.tableLinha}>
+            <TableBody items={items} emptyContent="Nenhuma empresa encontrada." style={TableBody.length == null ? { textAlign: "center" } : { textAlign: "left" }} >
+                {(item) =>
+                    <TableRow key={item.key}>
                         {(columnKey) => <TableCell>{getKeyValue(item, columnKey)}</TableCell>}
                     </TableRow>
-                )}
+                }
             </TableBody>
         </Table>
     );

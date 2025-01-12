@@ -1,25 +1,27 @@
 .formBox {
-    background-color: #d3d3d3;
+    background-color: #e7e7e7;
     width: 50%;
     margin: 0 auto;
     padding: 15px;
-    border: 1px solid #000000;
+    border: 2px solid #9fa4b3;
+    border-radius: 5px;
 }
 
 .divForm {
     text-align: center;
+    padding-top: 1%;
 }
 
-.label, .span {
-    background-color: #d3d3d3;
+.label, .span, .gray {
+    background-color: #e7e7e7;
 }
 
-.gray {
-    background-color: #d3d3d3;
+.gray{
+    padding: 1%;
 }
 
 .space {
-    margin-left: 20%;
+    margin-left: 15%;
 }
 
 .smallMargin {
@@ -33,4 +35,8 @@
 
 .codigo {
     width: 10%;
+}
+
+.marginTop {
+    margin-top: 1%;
 }

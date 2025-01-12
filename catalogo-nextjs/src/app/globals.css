@@ -48,10 +48,14 @@ table {
   margin: auto;
   border: 2px solid #9fa4b3;
   border-radius: 5px;
-  border-spacing: 25px 0;
+  border-spacing: 10px 5px;
   margin-top: 1%;
   width: 55%;
   padding: .5%;
+}
+
+th:first-child {
+  width: 400px;
 }
 
 th{
@@ -61,11 +65,19 @@ th{
 td {
   padding-top: .75%;
   padding-bottom: .75%;
+  border-right: 1px solid #9fa4b3;
+  border-bottom: 1px solid #9fa4b3;
+  border-radius: 3px;
+}
+
+td:last-child {
+  border-right: none;
 }
 
 table,
 th,
 td,
-td>span {
+td>span,
+th>svg {
   background-color: #e7e7e7;
 }

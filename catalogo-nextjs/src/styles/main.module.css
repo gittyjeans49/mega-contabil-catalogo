@@ -112,11 +112,11 @@
     margin-left: 25%;
 }
 
-.divpage{
+.divpage {
     text-align: center;
 }
 
-.divpage > nav > ul > span{
+.divpage>nav>ul>span {
     display: none;
 }
 
@@ -127,4 +127,4 @@
     background-color: #e7e7e7;
     padding: 8px 16px;
     margin: 5px;
-  }
+}
