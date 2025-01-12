@@ -8,21 +8,22 @@
 h1,
 h3 {
   text-align: center;
+  margin-top: .5%;
 }
 
-button {
+Button {
   background-color: #e7e7e7;
   border: solid 1px #000;
   border-radius: 5px;
-  padding: 0px 20px;
+  padding: 5px 15px;
   cursor: pointer;
 }
 
-button:hover:enabled {
+Button:hover:enabled {
   background-color: #d3d3d3;
 }
 
-button:disabled {
+Button:disabled {
   background-color: #d3d3d3;
   cursor: default;
 }
@@ -43,20 +44,40 @@ button:disabled {
   padding: 6px;
 }
 
-
-table,
-thead,
-tbody,
-tr,
-th,
-td {
-  background-color: #e7e7e7;
-  border-collapse: collapse;
+table {
   margin: auto;
-  border: 2px solid #383a46;
-  padding: 8px;
+  border: 2px solid #9fa4b3;
+  border-radius: 5px;
+  border-spacing: 10px 5px;
+  margin-top: 1%;
+  width: 55%;
+  padding: .5%;
 }
 
-td > span {
+th:first-child {
+  width: 400px;
+}
+
+th{
+  text-align: left;
+}
+
+td {
+  padding-top: .75%;
+  padding-bottom: .75%;
+  border-right: 1px solid #9fa4b3;
+  border-bottom: 1px solid #9fa4b3;
+  border-radius: 3px;
+}
+
+td:last-child {
+  border-right: none;
+}
+
+table,
+th,
+td,
+td>span,
+th>svg {
   background-color: #e7e7e7;
 }

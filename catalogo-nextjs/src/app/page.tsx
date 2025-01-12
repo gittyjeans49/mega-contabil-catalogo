@@ -6,8 +6,35 @@ import Header from "../components/Header";
 import Tabela from "../components/Tabela";
 import styles from "../styles/main.module.css";
 import { Modal, Button, useDisclosure } from "@nextui-org/react";
+import { useEffect, useState } from "react";
+import { User } from "@/components/columns";
+
+// adicionar import do mockdata https://675772e7c0a427baf94cc80f.mockapi.io/tabelaempresa
+
+// async function getUsers(): Promise<User[]>{
+//   const res = await fetch(
+//     'https://675772e7c0a427baf94cc80f.mockapi.io/tabelaempresa'
+//   )
+//   const userData = await res.json()
+//   return userData
+// }
+
+function tableData(){
+  
+  useEffect(() => {
+    async function fetchData(): Promise<User[]> {
+      const res = await fetch('https://675772e7c0a427baf94cc80f.mockapi.io/tabelaempresa');
+      const data = await res.json();
+      return data;
+    }
+    fetchData();
+  }, [])
+  // retornar os dados encontrados
+}
 
 export default function Home() {
+
+  // const users = tableData();
 
   const editarEmpresa = useDisclosure();
 
@@ -29,9 +56,9 @@ export default function Home() {
         />
         <button type="button">Pesquisar empresa...</button>
 
-        <Button onPress={editarEmpresa.onOpen}>Editar empresa...</Button>
+        <Button disableRipple={true} onPress={editarEmpresa.onOpen}>Editar empresa...</Button>
 
-        <Button onPress={opcoesAvancadas.onOpen}>Mais opções...</Button>
+        <Button disableRipple={true} onPress={opcoesAvancadas.onOpen}>Mais opções...</Button>
 
         <Modal hideCloseButton={true} isOpen={editarEmpresa.isOpen} onOpenChange={editarEmpresa.onOpenChange}>
           <EditarEmpresa />
@@ -42,6 +69,8 @@ export default function Home() {
         </Modal>
 
       </div>
+      {/* users está passando como void */}
+      {/* <Tabela users={users} /> */}
       <Tabela />
     </div>
   );

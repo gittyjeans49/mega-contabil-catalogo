@@ -8,10 +8,8 @@ export default function EditarEmpresa() {
     return (
         <ModalContent>
             {(onClose) => (
-                // tentar achar um jeito de impedir com que um clique na área do popupcontent feche ele
                 <div className={styles.popup} onClick={(event) => {
                     if (event.target === event.currentTarget) {
-                        console.log("teste");
                         onClose();
                     }
                 }}>
