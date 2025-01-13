@@ -74,7 +74,7 @@ export default function AddEmpresa() {
                         <option value={11}>12/202X</option>
                     </select>
                     <br />
-                    <Button className={styles.marginTop} type="submit">Adicionar Empresa</Button>
+                    <Button className={`${styles.marginTop} menuButton`} type="submit">Adicionar Empresa</Button>
                 </form>
             </div>
         </>

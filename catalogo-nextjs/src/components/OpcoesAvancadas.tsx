@@ -1,4 +1,4 @@
-import { ModalContent, ModalBody } from "@nextui-org/react";
+import { ModalContent, ModalBody, Button } from "@nextui-org/react";
 import styles from "../styles/main.module.css"
 
 export default function ModalTest() {
@@ -100,8 +100,8 @@ export default function ModalTest() {
                                 </div>
                             </div>
                         </div>
-                        <button type="button">Limpar</button>
-                        <button type="button">Pesquisar</button>
+                        <Button className="menuButton" type="button">Limpar</Button>
+                        <Button className="menuButton" type="button">Pesquisar</Button>
                     </ModalBody>
 
                 </div>

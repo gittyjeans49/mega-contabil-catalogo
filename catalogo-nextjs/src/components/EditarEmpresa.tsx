@@ -31,10 +31,10 @@ export default function EditarEmpresa() {
                         <span>Responsável da equipe: </span>
                         <input className={styles.advInput}></input>
                         <br />
-                        <Button onPress={onClose}>
+                        <Button className="menuButton" onPress={onClose}>
                             Cancelar
                         </Button>
-                        <Button>
+                        <Button className="menuButton">
                             Confirmar
                         </Button>
                     </ModalBody>

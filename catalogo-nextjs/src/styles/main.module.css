@@ -61,7 +61,6 @@
     width: 20%;
 }
 
-/* !!! */
 .popup {
     margin: auto;
     position: fixed;
@@ -75,7 +74,6 @@
 
 }
 
-/* !!! */
 .popupContent {
     z-index: 1;
     text-align: center;
@@ -116,6 +114,7 @@
     text-align: center;
 }
 
+/* remove o número extra aparecendo na seleção de páginas da tabela */
 .divpage>nav>ul>span {
     display: none;
 }
@@ -127,4 +126,12 @@
     background-color: #e7e7e7;
     padding: 8px 16px;
     margin: 5px;
+}
+
+.topContInput {
+    width: fit-content;
+    height: 1%;
+    border-radius: 5px;
+    border: 1px solid #000;
+    background-color: #fff;
 }
