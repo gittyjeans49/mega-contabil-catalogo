@@ -14,11 +14,11 @@ import {
     Button,
     Modal,
     useDisclosure,
-} from "@nextui-org/react";
+} from "@heroui/react";
 import styles from "../styles/main.module.css"
 import { columns, User } from "./columns";
-// import { FaChevronDown, FaChevronUp, FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { CiSearch } from "react-icons/ci";
+import { FaChevronDown, FaChevronUp, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { CiCircleRemove, CiSearch } from "react-icons/ci";
 import EditarEmpresa from "./EditarEmpresa";
 import OpcoesAvancadas from "./OpcoesAvancadas";
 
@@ -41,9 +41,7 @@ export default function Tabela({ users }: { users: User[] }) {
         });
     }, [sortDescriptor, users]);
 
-    // const chevronDirection = () => {
-    //     return sortDescriptor.direction === "descending" ? <FaChevronDown /> : <FaChevronUp />
-    // }
+    // const chevronDirection = sortDescriptor.direction === "descending" ? <FaChevronDown /> : <FaChevronUp />
 
     const filteredItems = useMemo(() => {
         let filteredUsers = [...sortedItems]
@@ -85,24 +83,6 @@ export default function Tabela({ users }: { users: User[] }) {
 
     const opcoesAvancadas = useDisclosure();
 
-    // const topContent = React.useMemo(() => {
-    //     return (
-    //         <Input
-    //             className={styles.topContInput}
-    //             isClearable
-    //             placeholder="Digite o nome da empresa..."
-    //             startContent={<CiSearch />}
-    //             value={filterValue}
-    //             onClear={() => onClear()}
-    //             onValueChange={onSearchChange}
-    //         />
-    //     );
-    // }, [
-    //     filterValue,
-    //     onSearchChange,
-    //     onClear
-    // ]);
-
     const bottomContent = React.useMemo(() => {
         return (
             <div className={styles.divpage}>
@@ -124,6 +104,7 @@ export default function Tabela({ users }: { users: User[] }) {
                     isClearable
                     placeholder="Digite o nome da empresa..."
                     startContent={<CiSearch />}
+                    endContent={<CiCircleRemove />}
                     value={filterValue}
                     onClear={() => onClear()}
                     onValueChange={onSearchChange}
@@ -149,14 +130,14 @@ export default function Tabela({ users }: { users: User[] }) {
                     bottomContent={bottomContent}
                     sortDescriptor={sortDescriptor}
                     onSortChange={setSortDescriptor}>
-                    {/* adicionar filtros e classificações - em progresso */}
+                    {/* mudar a direção do chevron quando a coluna muda a ordem da classificação */}
                     <TableHeader columns={columns}>
                         {(column) => <TableColumn key={column.key}
                             {...(['codigo', 'empresa'].includes(column.key) ? { allowsSorting: true } : {})}
                         >{column.label}</TableColumn>}
                     </TableHeader>
                     {/* condicional ternário para alinhar o texto */}
-                    <TableBody items={items} emptyContent="Nenhuma empresa encontrada." style={TableBody.length == null ? { textAlign: "center" } : { textAlign: "left" }} >
+                    <TableBody items={items} emptyContent="Nenhuma empresa encontrada." style={items.length === 0 ? { textAlign: "center" } : { textAlign: "left" }} >
                         {(item) =>
                             <TableRow key={item.key}>
                                 {(columnKey) => <TableCell>{getKeyValue(item, columnKey)}</TableCell>}

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../styles/main.module.css"
-import { ModalContent, ModalBody, Button } from "@nextui-org/react";
+import { ModalContent, ModalBody, Button } from "@heroui/react";
 
 
 export default function EditarEmpresa() {

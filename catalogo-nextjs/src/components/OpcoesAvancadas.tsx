@@ -1,4 +1,4 @@
-import { ModalContent, ModalBody, Button } from "@nextui-org/react";
+import { ModalContent, ModalBody, Button } from "@heroui/react";
 import styles from "../styles/main.module.css"
 
 export default function ModalTest() {

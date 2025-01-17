@@ -81,3 +81,7 @@ td>span,
 th>svg {
   background-color: #e7e7e7;
 }
+
+th:focus{
+  outline: none;
+}

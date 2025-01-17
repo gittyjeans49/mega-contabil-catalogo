@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from '../styles/main.module.css';
+import styles from '../styles/header.module.css';
 
 import logoMegasult from '../assets/mega-logo.png'
 
