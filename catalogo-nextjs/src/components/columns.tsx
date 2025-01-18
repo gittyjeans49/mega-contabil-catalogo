@@ -14,6 +14,7 @@ export const columns = [
     {
         key: "empresa",
         label: "Nome da Empresa",
+        sortable: "true"
     },
     {
         key: "codigo",

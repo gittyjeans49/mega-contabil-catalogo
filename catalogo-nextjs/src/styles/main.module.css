@@ -1,42 +1,3 @@
-.header {
-    background-color: #8a8a8a;
-    padding: 25px;
-}
-
-.a {
-    text-decoration: none;
-}
-
-.logoMega {
-    width: 5%;
-    height: 5%;
-    background-color: #8a8a8a;
-    float: right;
-    margin-top: -15px;
-}
-
-.a:hover {
-    color: white;
-}
-
-.selected {
-    font-weight: bold;
-}
-
-.headerMenu {
-    background-color: #8a8a8a;
-    color: white;
-    padding: 0px 20px;
-}
-
-.img {
-    width: 5%;
-    height: 5%;
-    background-color: #8a8a8a;
-    float: right;
-    margin-top: -15px;
-}
-
 .searchFunctions {
     display: flex;
     justify-content: right;
@@ -61,7 +22,6 @@
     width: 20%;
 }
 
-/* !!! */
 .popup {
     margin: auto;
     position: fixed;
@@ -75,7 +35,6 @@
 
 }
 
-/* !!! */
 .popupContent {
     z-index: 1;
     text-align: center;
@@ -116,15 +75,40 @@
     text-align: center;
 }
 
+/* remove o número extra aparecendo na seleção de páginas da tabela */
 .divpage>nav>ul>span {
     display: none;
 }
 
+/* bottomContent page buttons */
 .tablepage li {
     border: 2px solid #9fa4b3;
     border-radius: 5px;
     display: inline-block;
     background-color: #e7e7e7;
-    padding: 8px 16px;
+    padding: .5% 1%;
     margin: 5px;
+    margin-top: .5%;
+}
+
+.topContInput {
+    width: fit-content;
+    height: 1%;
+    border-radius: 5px;
+    padding: 5px 15px;
+    border: 1px solid #000;
+    align-items: left;
+    background-color: white;
+}
+
+/* topContent background color */
+.topContInput * {
+    display: flex;
+    padding: .5% 0;
+    background-color: white;
+    border: none;
+}
+
+.topContInput * :focus{
+    outline: none;
 }

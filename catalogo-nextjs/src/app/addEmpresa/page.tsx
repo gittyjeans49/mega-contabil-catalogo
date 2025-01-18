@@ -3,7 +3,7 @@
 import React from "react";
 import styles from "../../styles/addEmp.module.css";
 import Header from "../../components/Header";
-import { Button } from "@nextui-org/react";
+import { Button } from "@heroui/react";
 
 export default function AddEmpresa() {
     return (
@@ -74,7 +74,7 @@ export default function AddEmpresa() {
                         <option value={11}>12/202X</option>
                     </select>
                     <br />
-                    <Button className={styles.marginTop} type="submit">Adicionar Empresa</Button>
+                    <Button className={`${styles.marginTop} menuButton`} type="submit">Adicionar Empresa</Button>
                 </form>
             </div>
         </>
