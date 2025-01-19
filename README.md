@@ -1,6 +1,12 @@
-# Projeto de Estágio Obrigatório feito na empresa Lyla Serviços de Informática
+# Catálogo de Empresas Megasult
+
+Projeto de Estágio Obrigatório feito na empresa Lyla Serviços de Informática
 
 Figma com o protótipo do projeto: https://www.figma.com/design/ZyXItA0Tf4md9pgY9GujiX/Megasult-Cat%C3%A1logo-de-Empresas?node-id=0-1&t=7pB0fs5K2oh2Whfi-1
+
+## Pastas dos arquivos
+> Projeto-html é o primeiro protótipo do projeto, feito com HTML, CSS e Javascript.\
+> Catalogo-nextjs (<ins>Instância atual</ins>) é uma adaptação total do projeto para que o mesmo seja feito utilizando o Next.js como base.
 
 ### Objetivo:
 - Criar um catálogo das empresas gerenciadas no setor da contabilidade, a fim de dispensar o uso de planilhas a favor de uma página web responsiva que possua os mesmos dados.
