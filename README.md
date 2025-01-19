@@ -1,0 +1,12 @@
+# Projeto de Estágio Obrigatório feito na empresa Lyla Serviços de Informática
+
+Figma com o protótipo do projeto: https://www.figma.com/design/ZyXItA0Tf4md9pgY9GujiX/Megasult-Cat%C3%A1logo-de-Empresas?node-id=0-1&t=7pB0fs5K2oh2Whfi-1
+
+### Objetivo:
+- Criar um catálogo das empresas gerenciadas no setor da contabilidade, a fim de dispensar o uso de planilhas a favor de uma página web responsiva que possua os mesmos dados.
+
+Para isso, o projeto está sendo construído utilizando Next.js para o Back-end, com o Front-end sendo desenvolvido com HTML, módulos CSS e TypeScript.
+
+O banco de dados utilizado é o PostgreSQL.
+
+Mais informações a serem adicionadas.
