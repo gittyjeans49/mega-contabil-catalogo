@@ -12,7 +12,7 @@ Figma com o protótipo do projeto: https://www.figma.com/design/ZyXItA0Tf4md9pgY
 1. Após abrir o projeto completo na sua IDE de preferência, entre na pasta "catalogo-nextjs" e digite o comando ```npm install```;
 2. Aguarde a instalação dos packages utilizados no projeto;
 3. Após a instalação, digite o comando ```npm run dev``` para inicializar o projeto;
-4. Entre no link http://localhost:3000 para abrir a página inicial do projeto.
+4. Entre no link http://localhost:3000 para abrir a página inicial do projeto.\
 Futuras inicializações do projeto dependem apenas de entrar na pasta correta e digitar o comando ```npm run dev```.
 
 ### Objetivo:
