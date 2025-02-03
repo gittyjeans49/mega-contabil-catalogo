@@ -14,14 +14,11 @@
 
 .label, .span, .gray {
     background-color: #e7e7e7;
-}
-
-.gray{
     padding: 1%;
 }
 
 .space {
-    margin-left: 15%;
+    margin-left: 10%;
 }
 
 .smallMargin {

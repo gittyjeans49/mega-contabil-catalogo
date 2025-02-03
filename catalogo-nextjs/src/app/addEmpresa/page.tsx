@@ -11,7 +11,7 @@ export default function AddEmpresa() {
             <Header />
             <h1>Adicionar Empresa</h1>
             <div className={styles.divForm}>
-                <form action="action_page.php" className={styles.formBox}>
+                <form className={styles.formBox}>
                     <div className={styles.gray}>
                         <label className={styles.label} htmlFor="nome">Nome da Empresa:</label>
                         <input type="text" id="nome" name="nome" className="empresaInput" />

@@ -17,14 +17,20 @@ import {
 } from "@heroui/react";
 import styles from "../styles/main.module.css"
 import { columns, User } from "./columns";
-import { FaChevronDown, FaChevronUp, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { CiCircleRemove, CiSearch } from "react-icons/ci";
 import EditarEmpresa from "./EditarEmpresa";
-import OpcoesAvancadas from "./OpcoesAvancadas";
+// import OpcoesAvancadas from "./OpcoesAvancadas";
 
 export default function Tabela({ users }: { users: User[] }) {
-    const [filterValue, setFilterValue] = useState('');
-    const hasSearchFilter = Boolean(filterValue);
+    // filtro do nome da empresa
+    const [filterEmpresa, setFilterEmpresa] = useState('');
+    const hasSearchFilter = Boolean(filterEmpresa);
+    // filtro do código da empresa
+    const [filterCode, setFilterCode] = useState('');
+    const hasSearchFilter2 = Boolean(filterCode);
+    // filtro do código da equipe
+    const [filterTeam, setFilterTeam] = useState('');
+    const hasSearchFilter3 = Boolean(filterTeam);
 
     const [sortDescriptor, setSortDescriptor] = React.useState<SortDescriptor>({
         column: "key",
@@ -41,19 +47,32 @@ export default function Tabela({ users }: { users: User[] }) {
         });
     }, [sortDescriptor, users]);
 
-    // const chevronDirection = sortDescriptor.direction === "descending" ? <FaChevronDown /> : <FaChevronUp />
-
     const filteredItems = useMemo(() => {
         let filteredUsers = [...sortedItems]
 
+        // if input do nome da empresa
         if (hasSearchFilter) {
             filteredUsers = filteredUsers.filter(user =>
-                user.empresa.toLowerCase().includes(filterValue.toLowerCase())
+                user.empresa.toLowerCase().includes(filterEmpresa.toLowerCase())
+            )
+        }
+
+        // if input do código da empresa
+        if (hasSearchFilter2) {
+            filteredUsers = filteredUsers.filter(user =>
+                user.codigo.toString().includes(filterCode.toString())
+            )
+        }
+
+        if (hasSearchFilter3) {
+            filteredUsers = filteredUsers.filter(user =>
+                user.equipe.toString().includes(filterTeam.toString())
             )
         }
 
         return filteredUsers
-    }, [sortedItems, filterValue, hasSearchFilter])
+    }, [sortedItems, filterEmpresa, filterCode, filterTeam, hasSearchFilter, hasSearchFilter2, hasSearchFilter3])
+
 
     const rowsPerPage = 15;
     const [page, setPage] = React.useState(1);
@@ -67,21 +86,50 @@ export default function Tabela({ users }: { users: User[] }) {
 
     const onSearchChange = React.useCallback((value?: string) => {
         if (value) {
-            setFilterValue(value);
+            setFilterEmpresa(value);
             setPage(1);
         } else {
-            setFilterValue("");
+            setFilterEmpresa("");
         }
     }, []);
 
     const onClear = React.useCallback(() => {
-        setFilterValue("");
+        setFilterEmpresa("");
         setPage(1);
     }, []);
 
+    const onSearchChange2 = React.useCallback((value?: string) => {
+        if (value) {
+            setFilterCode(value);
+            setPage(1);
+        } else {
+            setFilterCode("");
+        }
+    }, []);
+
+    const onClear2 = React.useCallback(() => {
+        setFilterCode("");
+        setPage(1);
+    }, []);
+
+    const onSearchChange3 = React.useCallback((value?: string) => {
+        if (value) {
+            setFilterTeam(value);
+            setPage(1);
+        } else {
+            setFilterTeam("");
+        }
+    }, []);
+
+    const onClear3 = React.useCallback(() => {
+        setFilterTeam("");
+        setPage(1);
+    }, []);
+
+
     const editarEmpresa = useDisclosure();
 
-    const opcoesAvancadas = useDisclosure();
+    // const opcoesAvancadas = useDisclosure();
 
     const bottomContent = React.useMemo(() => {
         return (
@@ -89,6 +137,7 @@ export default function Tabela({ users }: { users: User[] }) {
                 <Pagination className={styles.tablepage}
                     page={page}
                     total={pages}
+                    showControls
                     onChange={(page) => setPage(page)}
                 />
             </div>
@@ -99,28 +148,53 @@ export default function Tabela({ users }: { users: User[] }) {
         <div>
             <div className={styles.searchFunctions}>
 
+                <span className={styles.inputSpan}>Nome:</span>
                 <Input
                     className={styles.topContInput}
                     isClearable
-                    placeholder="Digite o nome da empresa..."
+                    placeholder="Digite o nome da empresa"
                     startContent={<CiSearch />}
                     endContent={<CiCircleRemove />}
-                    value={filterValue}
+                    value={filterEmpresa}
                     onClear={() => onClear()}
                     onValueChange={onSearchChange}
                 />
 
+                <span className={styles.inputSpan}>Código:</span>
+                <Input
+                    className={styles.topContInput}
+                    isClearable
+                    placeholder="Digite o código da empresa"
+                    startContent={<CiSearch />}
+                    endContent={<CiCircleRemove />}
+                    value={filterCode}
+                    onClear={() => onClear2()}
+                    onValueChange={onSearchChange2}
+                />
+
+                <span className={styles.inputSpan}>Equipe:</span>
+                <Input
+                    className={styles.topContInput}
+                    isClearable
+                    placeholder="Digite a equipe"
+                    startContent={<CiSearch />}
+                    endContent={<CiCircleRemove />}
+                    value={filterTeam}
+                    onClear={() => onClear3()}
+                    onValueChange={onSearchChange3}
+                />
+
                 <Button className="menuButton" disableRipple={true} onPress={editarEmpresa.onOpen}>Editar empresa...</Button>
 
-                <Button className="menuButton" disableRipple={true} onPress={opcoesAvancadas.onOpen}>Mais opções...</Button>
+                {/* <Button className="menuButton" disableRipple={true} onPress={opcoesAvancadas.onOpen}>Mais opções...</Button> */}
 
                 <Modal hideCloseButton={true} isOpen={editarEmpresa.isOpen} onOpenChange={editarEmpresa.onOpenChange}>
                     <EditarEmpresa />
                 </Modal>
 
-                <Modal hideCloseButton={true} isOpen={opcoesAvancadas.isOpen} onOpenChange={opcoesAvancadas.onOpenChange}>
+                {/* <Modal hideCloseButton={true} isOpen={opcoesAvancadas.isOpen} onOpenChange={opcoesAvancadas.onOpenChange}>
                     <OpcoesAvancadas />
-                </Modal>
+                </Modal> */}
 
             </div>
 
@@ -129,11 +203,12 @@ export default function Tabela({ users }: { users: User[] }) {
                 <Table
                     bottomContent={bottomContent}
                     sortDescriptor={sortDescriptor}
-                    onSortChange={setSortDescriptor}>
+                    onSortChange={setSortDescriptor}
+                    selectionMode="single">
                     {/* mudar a direção do chevron quando a coluna muda a ordem da classificação */}
                     <TableHeader columns={columns}>
                         {(column) => <TableColumn key={column.key}
-                            {...(['codigo', 'empresa'].includes(column.key) ? { allowsSorting: true } : {})}
+                            {...(['codigo', 'empresa', 'equipe'].includes(column.key) ? { allowsSorting: true } : {})}
                         >{column.label}</TableColumn>}
                     </TableHeader>
                     {/* condicional ternário para alinhar o texto */}
