@@ -9,6 +9,10 @@
     margin-right: 40px;
 }
 
+.searchFunctions>span {
+    margin-right: 20px;
+}
+
 .advInput {
     width: 50%;
     height: 30px;
@@ -20,6 +24,10 @@
 
 .smallInput {
     width: 20%;
+}
+
+.inputSpan {
+    padding: 7px 0px;
 }
 
 .popup {
@@ -80,7 +88,16 @@
     display: none;
 }
 
-/* bottomContent page buttons */
+/* setas do bottomContent */
+.divpage>nav>ul>li>svg{
+    background-color: #e7e7e7;
+}
+.divpage>nav>ul>li:last-child>svg {
+    transform: rotate(180deg);
+    transform-origin: 50% 50%;
+}
+
+/* botoes da tabela bottomContent */
 .tablepage li {
     border: 2px solid #9fa4b3;
     border-radius: 5px;
@@ -92,12 +109,10 @@
 }
 
 .topContInput {
-    width: fit-content;
     height: 1%;
     border-radius: 5px;
     padding: 5px 15px;
     border: 1px solid #000;
-    align-items: left;
     background-color: white;
 }
 

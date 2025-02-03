@@ -74,6 +74,8 @@ td:last-child {
   border-right: none;
 }
 
+/* background color */
+
 table,
 th,
 td,
@@ -82,6 +84,25 @@ th>svg {
   background-color: #e7e7e7;
 }
 
+/* trocar de cor quando for selecionado */
+
+/* tr:focus,
+td:focus,
+td>span:focus,
+th>svg:focus{
+  color funciona, mas background-color não
+  background-color: #9fa4b3;
+} */
+
+/* remove outline */
+
 th:focus{
   outline: none;
+}
+
+/* th seta de classificação - WIP */
+
+th:focus>svg{
+  transform: rotate(180deg);
+  transform-origin: 50% 50%;
 }
