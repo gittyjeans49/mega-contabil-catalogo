@@ -1,13 +1,15 @@
 "use client";
 
+import { ObjectId } from "mongoose";
+
 export type User = {
+    _id: ObjectId
     empresa: string
     codigo: number
     tipo_lucro: string
     equipe: number
     responsavel: string
     fechamento: string
-    key: string
 }
 
 export const columns = [

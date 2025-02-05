@@ -25,15 +25,17 @@ export default function Tabela({ users }: { users: User[] }) {
     // filtro do nome da empresa
     const [filterEmpresa, setFilterEmpresa] = useState('');
     const hasSearchFilter = Boolean(filterEmpresa);
+
     // filtro do código da empresa
     const [filterCode, setFilterCode] = useState('');
     const hasSearchFilter2 = Boolean(filterCode);
+
     // filtro do código da equipe
     const [filterTeam, setFilterTeam] = useState('');
     const hasSearchFilter3 = Boolean(filterTeam);
 
     const [sortDescriptor, setSortDescriptor] = React.useState<SortDescriptor>({
-        column: "key",
+        column: "_id",
         direction: "ascending"
     });
 
@@ -214,7 +216,7 @@ export default function Tabela({ users }: { users: User[] }) {
                     {/* condicional ternário para alinhar o texto */}
                     <TableBody items={items} emptyContent="Nenhuma empresa encontrada." style={items.length === 0 ? { textAlign: "center" } : { textAlign: "left" }} >
                         {(item) =>
-                            <TableRow key={item.key}>
+                            <TableRow key={item._id.toString()}>
                                 {(columnKey) => <TableCell>{getKeyValue(item, columnKey)}</TableCell>}
                             </TableRow>
                         }
