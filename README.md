@@ -20,6 +20,6 @@ Futuras inicializações do projeto dependem apenas de entrar na pasta correta e
 
 Para isso, o projeto está sendo construído utilizando Next.js para o Back-end, com o Front-end sendo desenvolvido com HTML, módulos CSS e TypeScript.
 
-O banco de dados utilizado é o PostgreSQL.
+O banco de dados utilizado é o MongoDB.
 
 Mais informações a serem adicionadas.
