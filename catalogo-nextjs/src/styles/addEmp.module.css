@@ -12,13 +12,19 @@
     padding-top: 1%;
 }
 
-.label, .span, .gray {
+.label,
+.span,
+.gray {
     background-color: #e7e7e7;
     padding: 1%;
 }
 
 .space {
     margin-left: 10%;
+}
+
+.smallSpace {
+    margin-left: 2%;
 }
 
 .smallMargin {

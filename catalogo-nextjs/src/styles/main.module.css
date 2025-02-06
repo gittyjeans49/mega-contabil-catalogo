@@ -1,6 +1,6 @@
 .searchFunctions {
     display: flex;
-    justify-content: right;
+    justify-content: center;
     margin-top: .75%;
     margin-bottom: .75%;
 }
@@ -48,14 +48,14 @@
     text-align: center;
     background-color: #f0ffff;
     margin: 7.5% auto;
-    padding: 20px;
+    padding: 1%;
     border: 1px solid #000;
     border-radius: 5px;
-    width: 40%;
+    width: 50%;
 }
 
-.popupContent>* {
-    margin: 1%;
+.popupContent * {
+    margin: .5%;
 }
 
 .divLeft {

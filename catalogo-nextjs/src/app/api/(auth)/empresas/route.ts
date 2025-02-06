@@ -11,56 +11,56 @@ export const GET = async () => {
         const empresas = await Empresa.find();
         return new NextResponse(JSON.stringify(empresas), { status: 200 });
     } catch (error: any) {
-        return new NextResponse("Error in fetching companies" + error.message, { status: 500 });
+        return new NextResponse("Erro ao buscar empresas" + error.message, { status: 500 });
     }
 };
 
 export const POST = async (request: Request) => {
     try {
-        const body = await request.json();
+        const { empresa, codigo, tipo_lucro, equipe, responsavel, fechamento } = await request.json();
         await connect();
-        const empresa = new Empresa(body);
-        await empresa.save();
+        const newEmpresa = new Empresa({
+            empresa, codigo, tipo_lucro, equipe, responsavel, fechamento
+        });
+        await newEmpresa.save();
 
-        return new NextResponse(JSON.stringify({ message: "Company was created.", empresa: empresa })),
-            ({ status: 200 });
+        return new NextResponse(JSON.stringify({ message: "Empresa foi criada.", empresa: newEmpresa }), { status: 200 });
 
     } catch (error: any) {
-        return new NextResponse("Error in creating company" + error.message, { status: 500 });
+        return new NextResponse("Erro ao criar empresa" + error.message, { status: 500 });
     }
-
 };
 
 export const PATCH = async (request: Request) => {
     try {
         const body = await request.json();
-        const { empresaId, newEmpresa } = body;
+        const { empresaId, newEmpresa, newCodigo, newTipo_lucro, newEquipe, newResponsavel, newFechamento } = body;
         await connect();
 
         if (!empresaId || !newEmpresa) {
             return new NextResponse(
-                JSON.stringify({ message: "ID or new company not found." }), { status: 400 });
+                JSON.stringify({ message: "ID ou empresa não encontrada." }), { status: 400 });
         }
 
         if (!Types.ObjectId.isValid(empresaId)) {
-            return new NextResponse(JSON.stringify({ message: "Invalid company ID." }), { status: 400, });
+            return new NextResponse(JSON.stringify({ message: "ID da empresa inválido." }), { status: 400, });
         }
 
         const updatedEmpresa = await Empresa.findOneAndUpdate(
             { _id: new ObjectId(empresaId) },
-            { empresa: newEmpresa },
+            { "$set": {"empresa": newEmpresa, "codigo": newCodigo, "tipo_lucro": newTipo_lucro, "equipe": newEquipe, "responsavel": newResponsavel, "fechamento": newFechamento} },
             { new: true }
         );
 
         if (!updatedEmpresa) {
             return new NextResponse(
-                JSON.stringify({ message: "Company not found in the database." }), { status: 400 });
+                JSON.stringify({ message: "Empresa não encontrada no banco de dados." }), { status: 400 });
         }
 
-        return new NextResponse(JSON.stringify({ message: "Company is updated,", empresa: updatedEmpresa }), { status: 200 })
+        return new NextResponse(JSON.stringify({ message: "Empresa foi atualizada,", empresa: updatedEmpresa }), { status: 200 })
 
     } catch (error: any) {
-        return new NextResponse("Error in updating company" + error.message, { status: 500 });
+        return new NextResponse("Erro ao atualizar empresa" + error.message, { status: 500 });
     }
 }
 
@@ -70,11 +70,11 @@ export const DELETE = async (request: Request) => {
         const empresaId: any = searchParams.get("empresaId");
 
         if (!empresaId) {
-            return new NextResponse(JSON.stringify({ message: "ID not found." }), { status: 400 });
+            return new NextResponse(JSON.stringify({ message: "ID não encontrado." }), { status: 400 });
         }
 
         if (!Types.ObjectId.isValid(empresaId)) {
-            return new NextResponse(JSON.stringify({ message: "Invalid company ID." }), { status: 400 });
+            return new NextResponse(JSON.stringify({ message: "ID de empresa inválido." }), { status: 400 });
         }
 
         await connect();
@@ -84,12 +84,12 @@ export const DELETE = async (request: Request) => {
         );
 
         if (!deletedEmpresa) {
-            new NextResponse(JSON.stringify({ message: "Company not found in the database. " }), { status: 400 })
+            new NextResponse(JSON.stringify({ message: "Empresa não encontrada no banco de dados. " }), { status: 400 })
         }
 
-        return new NextResponse(JSON.stringify({ message: "Company is deleted. ", empresa: deletedEmpresa }), { status: 200 })
+        return new NextResponse(JSON.stringify({ message: "Empresa foi deletada. ", empresa: deletedEmpresa }), { status: 200 })
 
     } catch (error: any) {
-        return new NextResponse("Error in deleting company" + error.message, { status: 500 });
+        return new NextResponse("Erro ao deletar empresa" + error.message, { status: 500 });
     }
 }

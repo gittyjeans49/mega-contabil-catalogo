@@ -13,7 +13,7 @@ export default function Header() {
             <Link className={styles.headerMenu} href="/addEmpresa">
                 Adicionar Empresa
             </Link>
-            <Image src={logoMegasult} className={styles.logoMega} alt='Logo Megasult' width={100} height={100}/>
+            <Image src={logoMegasult} className={styles.logoMega} alt='Logo Megasult' width={100} height={100} />
         </header>
 
     );

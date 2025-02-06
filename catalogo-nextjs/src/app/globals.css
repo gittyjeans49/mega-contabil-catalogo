@@ -11,6 +11,11 @@ h3 {
   margin-top: .5%;
 }
 
+/* transformar a caixa de seleção em branco */
+select option {
+  background-color: white;
+}
+
 .menuButton {
   background-color: #e7e7e7;
   border: solid 1px #000;
@@ -50,16 +55,17 @@ table {
   border-radius: 5px;
   border-spacing: 10px 5px;
   margin-top: 1%;
-  width: 55%;
+  width: 60%;
   padding: .5%;
 }
 
 th:first-child {
-  width: 400px;
+  width: 425px;
 }
 
 th {
   text-align: left;
+  font-size: 13pt;
 }
 
 td {
@@ -70,8 +76,17 @@ td {
   border-radius: 3px;
 }
 
+td button{
+  display: none;
+}
+
 td:last-child {
   border-right: none;
+  width: 140px;
+}
+
+td:last-child button {
+  display: grid;
 }
 
 /* background color */

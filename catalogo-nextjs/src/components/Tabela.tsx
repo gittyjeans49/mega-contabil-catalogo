@@ -19,7 +19,7 @@ import styles from "../styles/main.module.css"
 import { columns, User } from "./columns";
 import { CiCircleRemove, CiSearch } from "react-icons/ci";
 import EditarEmpresa from "./EditarEmpresa";
-// import OpcoesAvancadas from "./OpcoesAvancadas";
+
 
 export default function Tabela({ users }: { users: User[] }) {
     // filtro do nome da empresa
@@ -128,10 +128,7 @@ export default function Tabela({ users }: { users: User[] }) {
         setPage(1);
     }, []);
 
-
     const editarEmpresa = useDisclosure();
-
-    // const opcoesAvancadas = useDisclosure();
 
     const bottomContent = React.useMemo(() => {
         return (
@@ -145,6 +142,12 @@ export default function Tabela({ users }: { users: User[] }) {
             </div>
         )
     }, [items.length, page, pages]);
+
+    // get _id table row and pass it to patch button
+
+    type TabelaProps = {
+        empresaId: String
+    }
 
     return (
         <div>
@@ -186,38 +189,33 @@ export default function Tabela({ users }: { users: User[] }) {
                     onValueChange={onSearchChange3}
                 />
 
-                <Button className="menuButton" disableRipple={true} onPress={editarEmpresa.onOpen}>Editar empresa...</Button>
-
-                {/* <Button className="menuButton" disableRipple={true} onPress={opcoesAvancadas.onOpen}>Mais opções...</Button> */}
+                {/* adicionar funcionalidade PATCH */}
 
                 <Modal hideCloseButton={true} isOpen={editarEmpresa.isOpen} onOpenChange={editarEmpresa.onOpenChange}>
                     <EditarEmpresa />
+                    {/* <EditarEmpresa empresaId = {empresaId} */}
                 </Modal>
-
-                {/* <Modal hideCloseButton={true} isOpen={opcoesAvancadas.isOpen} onOpenChange={opcoesAvancadas.onOpenChange}>
-                    <OpcoesAvancadas />
-                </Modal> */}
 
             </div>
 
             <div>
-
                 <Table
                     bottomContent={bottomContent}
                     sortDescriptor={sortDescriptor}
                     onSortChange={setSortDescriptor}
-                    selectionMode="single">
-                    {/* mudar a direção do chevron quando a coluna muda a ordem da classificação */}
+                    selectionMode="single"
+                >
                     <TableHeader columns={columns}>
                         {(column) => <TableColumn key={column.key}
                             {...(['codigo', 'empresa', 'equipe'].includes(column.key) ? { allowsSorting: true } : {})}
                         >{column.label}</TableColumn>}
                     </TableHeader>
-                    {/* condicional ternário para alinhar o texto */}
                     <TableBody items={items} emptyContent="Nenhuma empresa encontrada." style={items.length === 0 ? { textAlign: "center" } : { textAlign: "left" }} >
                         {(item) =>
                             <TableRow key={item._id.toString()}>
-                                {(columnKey) => <TableCell>{getKeyValue(item, columnKey)}</TableCell>}
+                                {(columnKey) => <TableCell>{getKeyValue(item, columnKey)}
+                                    <Button className="menuButton" disableRipple={true} onPress={editarEmpresa.onOpen}>Editar empresa...</Button>
+                                </TableCell>}
                             </TableRow>
                         }
                     </TableBody>

@@ -16,26 +16,29 @@ export const columns = [
     {
         key: "empresa",
         label: "Nome da Empresa",
-        sortable: "true"
     },
     {
         key: "codigo",
-        label: "Código",
+        label: "Código"
     },
     {
         key: "tipo_lucro",
-        label: "Tipo de Lucro",
+        label: "Tipo de Lucro"
     },
     {
         key: "equipe",
-        label: "Equipe",
+        label: "Equipe"
     },
     {
         key: "responsavel",
-        label: "Responsável",
+        label: "Responsável"
     },
     {
         key: "fechamento",
-        label: "Fechamento",
+        label: "Fechamento"
+    },
+    {
+        key: "botao",
+        label: "Editar"
     }
 ];
