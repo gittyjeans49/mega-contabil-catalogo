@@ -55,7 +55,7 @@ table {
   border-radius: 5px;
   border-spacing: 10px 5px;
   margin-top: 1%;
-  width: 60%;
+  width: 65%;
   padding: .5%;
 }
 
@@ -76,17 +76,9 @@ td {
   border-radius: 3px;
 }
 
-td button{
-  display: none;
-}
-
 td:last-child {
   border-right: none;
-  width: 140px;
-}
-
-td:last-child button {
-  display: grid;
+  width: fit-content;
 }
 
 /* background color */
@@ -98,16 +90,6 @@ td>span,
 th>svg {
   background-color: #e7e7e7;
 }
-
-/* trocar de cor quando for selecionado */
-
-/* tr:focus,
-td:focus,
-td>span:focus,
-th>svg:focus{
-  color funciona, mas background-color não
-  background-color: #9fa4b3;
-} */
 
 /* remove outline */
 

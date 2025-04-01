@@ -106,6 +106,7 @@
     padding: .5% 1%;
     margin: 5px;
     margin-top: .5%;
+    cursor: pointer;
 }
 
 .topContInput {

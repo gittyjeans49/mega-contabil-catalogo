@@ -1,10 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../styles/main.module.css"
 import { ModalContent, ModalBody } from "@heroui/react";
 import { NextResponse } from "next/server";
 
+interface EditarEmpresaProps {
+    dadosEmpresa: {
+        _id: string;
+        empresa: string;
+        codigo: string;
+        tipo_lucro: string;
+        equipe: string;
+        responsavel: string;
+        fechamento: string;
+    };
+}
 
-export default function EditarEmpresa() {
+export default function EditarEmpresa({ dadosEmpresa }: EditarEmpresaProps) {
+    const [id, setId] = useState("");
     const [empresa, setEmpresa] = useState("");
     const [codigo, setCodigo] = useState("");
     const [tipo_lucro, setTipo_lucro] = useState("");
@@ -12,13 +24,25 @@ export default function EditarEmpresa() {
     const [responsavel, setResponsavel] = useState("");
     const [fechamento, setFechamento] = useState("");
 
+    useEffect(() => {
+        console.log("Dados empresa", dadosEmpresa);
+        setId(dadosEmpresa._id);
+        setEmpresa(dadosEmpresa.empresa);
+        setCodigo(dadosEmpresa.codigo);
+        setTipo_lucro(dadosEmpresa.tipo_lucro);
+        setEquipe(dadosEmpresa.equipe);
+        setResponsavel(dadosEmpresa.responsavel);
+        setFechamento(dadosEmpresa.fechamento);
+    }, [dadosEmpresa]);
+
     const handleUpdate = async (e: any) => {
         e.preventDefault()
 
         try {
-            let res = await fetch("../api/empresas/", {
+
+            let res = await fetch("../api/empresas/?empresaId=" + id, {
                 cache: 'no-store',
-                method: 'PATCH',
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -27,10 +51,41 @@ export default function EditarEmpresa() {
 
             res = await res.json()
 
-            return new NextResponse(JSON.stringify({ message: "Empresa foi criada.", res: res })), ({ status: 200 });
+            console.log(res)
+
+            window.location.reload();
+
+            return new NextResponse(JSON.stringify({ message: "Empresa foi atualizada.", res: res })), ({ status: 200 });
 
         } catch (err: any) {
-            return new NextResponse("Erro ao criar empresa" + err.message, { status: 500 });
+            return new NextResponse("Erro ao atualizar empresa" + err.message, { status: 500 });
+        }
+    }
+
+    const handleDelete = async (e: any) => {
+        e.preventDefault()
+
+        try {
+
+            let res = await fetch("../api/empresas/?empresaId=" + id, {
+                cache: 'no-store',
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+
+            res = await res.json()
+
+            console.log(res)
+
+            window.location.reload();
+
+            return new NextResponse(JSON.stringify({ message: "Empresa foi atualizada.", res: res })), ({ status: 200 });
+
+
+        } catch (err: any) {
+            return new NextResponse("Erro ao atualizar empresa" + err.message, { status: 500 });
         }
     }
 
@@ -60,7 +115,6 @@ export default function EditarEmpresa() {
                                     onChange={(e) => setCodigo(e.target.value)}
                                     className="empresaInput"
                                     min={0}
-
                                 />
 
                                 <br />
@@ -70,14 +124,12 @@ export default function EditarEmpresa() {
                                 <span className={styles.span}>Tipo de lucro:</span>
 
                                 <select className="selectBox" name="tipoLucro" value={tipo_lucro} onChange={(e) => setTipo_lucro(e.target.value)}>
-                                    <option> </option>
                                     <option value={"Real"}>Real</option>
                                     <option value={"Presumido"}>Presumido</option>
                                 </select>
 
                                 <span className={`${styles.span} ${styles.space}`}>Equipe:</span>
                                 <select className="selectBox" name="equipe" value={equipe} onChange={(e) => setEquipe(e.target.value)} >
-                                    <option> </option>
                                     <option value={1}>1</option>
                                     <option value={2}>2</option>
                                     <option value={3}>3</option>
@@ -113,6 +165,7 @@ export default function EditarEmpresa() {
                             </select>
                             <br />
                             <input className={`${styles.marginTop} menuButton`} type="submit" value="Salvar empresa" />
+                            <input className={`${styles.marginTop} menuButton`} type="button" onClick={handleDelete} value="Deletar empresa" />
                         </form>
                     </ModalBody>
                 </div>

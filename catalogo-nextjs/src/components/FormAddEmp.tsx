@@ -6,7 +6,7 @@ import { NextResponse } from "next/server";
 import { useRouter } from "next/navigation";
 
 export default function FormAddEmp() {
-    // const router = useRouter();
+    const router = useRouter();
     const [empresa, setEmpresa] = useState("");
     const [codigo, setCodigo] = useState("");
     const [tipo_lucro, setTipo_lucro] = useState("");
@@ -30,7 +30,8 @@ export default function FormAddEmp() {
 
             res = await res.json()
 
-            window.location.reload();
+            router.push("/");
+            
             return new NextResponse(JSON.stringify({ message: "Empresa foi criada.", res: res })), ({ status: 200 });
 
         } catch (err: any) {

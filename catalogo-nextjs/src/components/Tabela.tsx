@@ -20,8 +20,10 @@ import { columns, User } from "./columns";
 import { CiCircleRemove, CiSearch } from "react-icons/ci";
 import EditarEmpresa from "./EditarEmpresa";
 
-
 export default function Tabela({ users }: { users: User[] }) {
+
+    const [empresaSelecionada, setEmpresaSelecionada] = useState<any>(null);
+
     // filtro do nome da empresa
     const [filterEmpresa, setFilterEmpresa] = useState('');
     const hasSearchFilter = Boolean(filterEmpresa);
@@ -86,6 +88,7 @@ export default function Tabela({ users }: { users: User[] }) {
         return filteredItems.slice(start, end);
     }, [page, filteredItems]);
 
+    //filtro empresa
     const onSearchChange = React.useCallback((value?: string) => {
         if (value) {
             setFilterEmpresa(value);
@@ -94,12 +97,12 @@ export default function Tabela({ users }: { users: User[] }) {
             setFilterEmpresa("");
         }
     }, []);
-
+    //limpar empresa
     const onClear = React.useCallback(() => {
         setFilterEmpresa("");
         setPage(1);
     }, []);
-
+    //filtro código
     const onSearchChange2 = React.useCallback((value?: string) => {
         if (value) {
             setFilterCode(value);
@@ -108,12 +111,12 @@ export default function Tabela({ users }: { users: User[] }) {
             setFilterCode("");
         }
     }, []);
-
+    //limpar código
     const onClear2 = React.useCallback(() => {
         setFilterCode("");
         setPage(1);
     }, []);
-
+    //filtro equipe
     const onSearchChange3 = React.useCallback((value?: string) => {
         if (value) {
             setFilterTeam(value);
@@ -122,7 +125,7 @@ export default function Tabela({ users }: { users: User[] }) {
             setFilterTeam("");
         }
     }, []);
-
+    //limpar equipe
     const onClear3 = React.useCallback(() => {
         setFilterTeam("");
         setPage(1);
@@ -142,12 +145,6 @@ export default function Tabela({ users }: { users: User[] }) {
             </div>
         )
     }, [items.length, page, pages]);
-
-    // get _id table row and pass it to patch button
-
-    type TabelaProps = {
-        empresaId: String
-    }
 
     return (
         <div>
@@ -189,11 +186,8 @@ export default function Tabela({ users }: { users: User[] }) {
                     onValueChange={onSearchChange3}
                 />
 
-                {/* adicionar funcionalidade PATCH */}
-
                 <Modal hideCloseButton={true} isOpen={editarEmpresa.isOpen} onOpenChange={editarEmpresa.onOpenChange}>
-                    <EditarEmpresa />
-                    {/* <EditarEmpresa empresaId = {empresaId} */}
+                    <EditarEmpresa dadosEmpresa={empresaSelecionada} />
                 </Modal>
 
             </div>
@@ -203,7 +197,6 @@ export default function Tabela({ users }: { users: User[] }) {
                     bottomContent={bottomContent}
                     sortDescriptor={sortDescriptor}
                     onSortChange={setSortDescriptor}
-                    selectionMode="single"
                 >
                     <TableHeader columns={columns}>
                         {(column) => <TableColumn key={column.key}
@@ -213,10 +206,21 @@ export default function Tabela({ users }: { users: User[] }) {
                     <TableBody items={items} emptyContent="Nenhuma empresa encontrada." style={items.length === 0 ? { textAlign: "center" } : { textAlign: "left" }} >
                         {(item) =>
                             <TableRow key={item._id.toString()}>
-                                {(columnKey) => <TableCell>{getKeyValue(item, columnKey)}
-                                    <Button className="menuButton" disableRipple={true} onPress={editarEmpresa.onOpen}>Editar empresa...</Button>
-                                </TableCell>}
-                            </TableRow>
+                            {(columnKey) => (
+                              <>
+                                {columnKey !== "botao" ? (<TableCell>{getKeyValue(item, columnKey)}</TableCell>) : (
+                                  <TableCell>
+                                    <Button className="menuButton" disableRipple={true} onPress={() => {
+                                        setEmpresaSelecionada(item);
+                                        editarEmpresa.onOpen();
+                                      }}>
+                                      Editar...
+                                    </Button>
+                                  </TableCell>
+                                )}
+                              </>
+                            )}
+                          </TableRow>
                         }
                     </TableBody>
                 </Table>

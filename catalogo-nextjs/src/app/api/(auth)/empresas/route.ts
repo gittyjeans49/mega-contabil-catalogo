@@ -31,25 +31,28 @@ export const POST = async (request: Request) => {
     }
 };
 
-export const PATCH = async (request: Request) => {
+export const PUT = async (request: Request) => {
+
     try {
-        const body = await request.json();
-        const { empresaId, newEmpresa, newCodigo, newTipo_lucro, newEquipe, newResponsavel, newFechamento } = body;
+        const { searchParams } = new URL(request.url);
+        const empresaId: any = searchParams.get("empresaId");
+        const { empresa, codigo, tipo_lucro, equipe, responsavel, fechamento } = await request.json();
         await connect();
 
-        if (!empresaId || !newEmpresa) {
+        if (!empresaId) {
             return new NextResponse(
-                JSON.stringify({ message: "ID ou empresa não encontrada." }), { status: 400 });
+                JSON.stringify({ message: "ID da empresa não encontrada." }), { status: 400 });
         }
 
         if (!Types.ObjectId.isValid(empresaId)) {
-            return new NextResponse(JSON.stringify({ message: "ID da empresa inválido." }), { status: 400, });
+            return new NextResponse(JSON.stringify({ message: "ID da empresa inválido." }), { status: 400 });
         }
 
-        const updatedEmpresa = await Empresa.findOneAndUpdate(
+        const updatedEmpresa = await Empresa.findByIdAndUpdate(
             { _id: new ObjectId(empresaId) },
-            { "$set": {"empresa": newEmpresa, "codigo": newCodigo, "tipo_lucro": newTipo_lucro, "equipe": newEquipe, "responsavel": newResponsavel, "fechamento": newFechamento} },
+            {"empresa": empresa, "codigo": codigo, "tipo_lucro": tipo_lucro, "equipe": equipe, "responsavel": responsavel, "fechamento": fechamento},
             { new: true }
+
         );
 
         if (!updatedEmpresa) {
