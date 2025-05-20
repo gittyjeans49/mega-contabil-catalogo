@@ -6,7 +6,7 @@ Figma com o protótipo do projeto: https://www.figma.com/design/ZyXItA0Tf4md9pgY
 
 ## Arquivos relevantes
 > O primeiro protótipo funcional do projeto, feito com HTML, CSS e Javascript, se encontra disponível no seguinte repositório:\
-> https://github.com/gittyjeans49/mega-contabil-prototipo-html\
+> https://github.com/gittyjeans49/mega-contabil-prototipo-html \
 > A instância atual do projeto é uma adaptação total do projeto para que o mesmo seja feito utilizando o Next.js como base.
 
 ## Instalação e inicialização do projeto
