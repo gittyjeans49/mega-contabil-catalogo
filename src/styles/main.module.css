@@ -54,29 +54,34 @@
     width: 50%;
 }
 
-.popupContent * {
-    margin: .5%;
+.formBox {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: right;
+}
+
+.formBox > * > *{
+    margin-bottom: 2.5%;
+    padding: 1%;
+}
+
+.updDelButs {
+    margin: auto;
+}
+
+.editEmpInput {
+    width: 55%;
+    padding: 10px;
 }
 
 .divLeft {
-    display: inline-block;
-    vertical-align: top;
-}
-
-.divRad {
-    margin-top: 10%;
-    text-align: start;
-    margin-left: 2.5%;
+    float: left;
+    width: 50%;
 }
 
 .divRight {
-    margin-left: 10%;
-    display: inline-block;
-}
-
-.divCheck {
-    text-align: start;
-    margin-left: 25%;
+    float: right;
+    width: 50%;
 }
 
 .divpage {
@@ -89,9 +94,10 @@
 }
 
 /* setas do bottomContent */
-.divpage>nav>ul>li>svg{
+.divpage>nav>ul>li>svg {
     background-color: #e7e7e7;
 }
+
 .divpage>nav>ul>li:last-child>svg {
     transform: rotate(180deg);
     transform-origin: 50% 50%;
@@ -125,6 +131,6 @@
     border: none;
 }
 
-.topContInput * :focus{
+.topContInput * :focus {
     outline: none;
 }

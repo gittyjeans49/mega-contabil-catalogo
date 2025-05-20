@@ -1,0 +1,44 @@
+.formBox {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #e7e7e7;
+    width: 50%;
+    margin: 0 auto;
+    padding: 15px;
+    border: 2px solid #9fa4b3;
+    border-radius: 5px;
+}
+
+.divForm {
+    padding-top: 1%;
+}
+
+.addEmpInput {
+    width: 55%;
+    padding: 10px;
+}
+
+.label,
+.gray {
+    text-align: right;
+    background-color: #e7e7e7;
+    padding: 1%;
+}
+
+.gray>* {
+    margin-bottom: 5%;
+}
+
+.divLeft {
+    float: left;
+    width: 50%;
+}
+
+.divRight {
+    float: right;
+    width: 50%;
+}
+
+.submitBut {
+    margin: auto;
+}

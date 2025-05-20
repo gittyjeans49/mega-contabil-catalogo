@@ -35,7 +35,7 @@ select option {
 
 .empresaInput {
   width: 25%;
-  height: 30px;
+  height: fit-content;
   border-radius: 5px;
   border: 1px solid #000;
   background-color: #fff;
